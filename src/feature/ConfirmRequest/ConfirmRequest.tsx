@@ -1,3 +1,4 @@
+import { Darkhast } from "../../asset/images";
 import { RequestSwiper } from "../../components/Swiper";
 import { GarbageType } from "../../interfaces/RequestDriverInterface";
 
@@ -9,7 +10,7 @@ export const ConfirmRequest = () => {
   ];
   return (
     <div className="p-2">
-      <img src="/darkhast-fori.png" />
+      <img src={Darkhast} />
       <RequestSwiper
         className="mt-10"
         items={Array(20)
