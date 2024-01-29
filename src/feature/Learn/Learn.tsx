@@ -1,14 +1,4 @@
-import React from "react";
-import { Button } from "../../components/Button";
-import { LearnPostCard } from "../../components/Card/LearnPostCard";
-
-const learnPosts = Array.from({ length: 10 }, (_i) => {
-  return {
-    imgSrc: "/blog-post.jpg",
-    title: "تفکیک پسماندها",
-    text: "طراحان سایت هنگام طراحی قالب سایت معمولا با این موضوع رو برو هستند که محتوای اصلی صفحات آماده نیست. در نتیجه طرح کلی دید درستی به کار فرما نمیدهد. اگر طراح بخواهد دنبال متن های مرتبط بگردد تمرکزش از روی کار اصلی برداشته میشود و اینکار زمان بر خواهد بود. همچنین طراح به دنبال این است که پس از ارایه کار نظر دیگران را در مورد طراحی جویا شود و نمی‌خواهد افراد روی متن های موجود تمرکز کنند.",
-  };
-});
+import { LearnPostCard } from "../../components/Card";
 
 export const Learn = () => {
   return (
@@ -20,9 +10,15 @@ export const Learn = () => {
         آموزش
       </h2>
       <div className="max-w-7xl mx-auto py-6 space-y-4">
-        {learnPosts.map((post, index) => (
-          <LearnPostCard key={index} {...post} />
-        ))}
+        {Array(10)
+          .fill({
+            imgSrc: "/blog-post.jpg",
+            title: "تفکیک پسماندها",
+            text: "طراحان سایت هنگام طراحی قالب سایت معمولا با این موضوع رو برو هستند که محتوای اصلی صفحات آماده نیست. در نتیجه طرح کلی دید درستی به کار فرما نمیدهد. اگر طراح بخواهد دنبال متن های مرتبط بگردد تمرکزش از روی کار اصلی برداشته میشود و اینکار زمان بر خواهد بود. همچنین طراح به دنبال این است که پس از ارایه کار نظر دیگران را در مورد طراحی جویا شود و نمی‌خواهد افراد روی متن های موجود تمرکز کنند.",
+          })
+          .map((post, index) => (
+            <LearnPostCard key={index} {...post} />
+          ))}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { RequestInterface } from "../../interfaces/RequestInterface";
 
 export * from "./RequestCard";
 export * from "./RequestDriverCard";
+export * from "./LearnPostCard";
 
 export interface RequestCardInterface extends RequestInterface {}
 
