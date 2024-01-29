@@ -20,7 +20,7 @@ export const ConfirmRequest = () => {
               address: "قم",
               dateTime: new Date(),
               price: 2002320,
-              status: i % 2 == 0 ? "Wating" : "Canceled",
+              status: i % 2 == 0 ? "DriverCanceled" : "UserCanceled",
               garbages: garbages,
             };
           })}

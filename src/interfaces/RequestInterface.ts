@@ -1,6 +1,7 @@
 export enum RequestStatusEnum {
-  Canceled = "لغو شده",
-  Wating = "در انتظار تایید",
+  UserCanceled = "لغو شده توسط کاربر",
+  DriverCanceled = "لفو شده توسط راننده",
+  Done = "انجام شده",
 }
 export interface RequestInterface {
   address: string;

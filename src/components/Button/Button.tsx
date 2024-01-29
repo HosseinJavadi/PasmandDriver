@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ButtonInterface } from ".";
 import { Icon } from "../../asset/icons";
 
@@ -8,6 +9,7 @@ export const Button: React.FC<ButtonInterface> = ({
   children,
   type = "Normal",
   letter,
+  href,
   onClick,
 }) => {
   var element: React.ReactNode;
@@ -50,9 +52,19 @@ export const Button: React.FC<ButtonInterface> = ({
   }
   return (
     <>
-      <button className={className.className} onClick={() => onClick?.()}>
-        {element}
-      </button>
+      {href ? (
+        <Link
+          to={href}
+          className={className.className}
+          onClick={() => onClick?.()}
+        >
+          {element}
+        </Link>
+      ) : (
+        <button className={className.className} onClick={() => onClick?.()}>
+          {element}
+        </button>
+      )}
     </>
   );
 };

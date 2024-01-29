@@ -12,6 +12,7 @@ export interface ButtonInterface {
   icon?: IconsType;
   letter?: string;
   children?: React.ReactNode;
+  href?: string;
   onClick?: () => void;
 }
 export * from "./Button";

@@ -19,7 +19,7 @@ const Collapse = ({
           }}
           className={`  ${
             className?.className ?? ""
-          }  flex justify-between items-center  relative p-2 bg-secondaryDark w-full transition-all border border-b-white
+          }  flex justify-between items-center  relative p-2 bg-white w-full transition-all border-b border-disable
                       cursor-pointer duration-200
                      ${
                        index
@@ -34,14 +34,12 @@ const Collapse = ({
                 className?.iconClass ?? ""
               }`}
             />
-            <span className={`${className?.titleClass ?? ""} !text-white`}>
-              {title}
-            </span>
+            <span className={`${className?.titleClass ?? ""} `}>{title}</span>
           </div>
 
           <Icon
             iconType="Dwon"
-            className={` text-xs  ${
+            className={` text-black text-xs  ${
               index ? "duration-300 rotate-180" : "duration-300 rotate-0"
             }`}
           />

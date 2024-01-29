@@ -3,7 +3,7 @@ import App from "../../App";
 import { ErrorBoundary } from "../ErrorBoundary/Index";
 import { Home } from "../Home";
 import { FAQ } from "../FAQ";
-import { ConfirmRequest } from "../ConfirmRequest";
+import { ConfirmRequest, DoneRequests } from "../Request";
 export const routers = createBrowserRouter([
   {
     element: <App />,
@@ -23,6 +23,11 @@ export const routers = createBrowserRouter([
         path: "/ConfirmRequest",
         index: true,
         element: <ConfirmRequest />,
+      },
+      {
+        path: "/DoneRequests",
+        index: true,
+        element: <DoneRequests />,
       },
     ],
   },

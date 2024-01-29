@@ -1,7 +1,25 @@
 import { RequestCardInterface } from ".";
+import { IconsType } from "../../asset/icons/svg";
 import { RequestStatusEnum } from "../../interfaces/RequestInterface";
 import { Button } from "../Button";
 
+type RequestMode = {
+  color: string;
+  icon: IconsType;
+};
+let requestMode: { [id: string]: RequestMode } = {};
+requestMode[RequestStatusEnum.DriverCanceled] = {
+  color: "text-danger",
+  icon: "xCircle",
+};
+requestMode[RequestStatusEnum.UserCanceled] = {
+  color: "text-danger",
+  icon: "xCircle",
+};
+requestMode[RequestStatusEnum.Done] = {
+  color: "text-success",
+  icon: "Tik",
+};
 export const RequestCard: React.FC<RequestCardInterface> = ({
   address,
   dateTime,
@@ -19,17 +37,9 @@ export const RequestCard: React.FC<RequestCardInterface> = ({
           type="Icon"
           className={{
             className: "text-[10px] bg-secondary !text-black gap-2",
-            iconClassName: `h-6 w-6 ${
-              RequestStatusEnum[status] === RequestStatusEnum.Canceled
-                ? "text-danger"
-                : "text-warn"
-            }`,
+            iconClassName: ` ${requestMode[RequestStatusEnum[status]].color}`,
           }}
-          icon={
-            RequestStatusEnum[status] === RequestStatusEnum.Canceled
-              ? `xCircle`
-              : "Stop"
-          }
+          icon={requestMode[RequestStatusEnum[status]].icon}
           title={RequestStatusEnum[status]}
         />
       </div>
@@ -40,10 +50,13 @@ export const RequestCard: React.FC<RequestCardInterface> = ({
         {`تاریخ و زمان : ${dateTime.toShamsi()}`}
       </div>
       <div className="flex justify-center items-center gap-3">
-        <Button
-          title="لغو درخواست"
-          className={{ className: "!bg-danger text-white" }}
-        />
+        {/* {!(status === "DriverCanceled" || status === "UserCanceled") && (
+          <Button
+            title="لغو درخواست"
+            className={{ className: "!bg-danger text-white" }}
+          />
+        )} */}
+
         <Button
           title="جزئیات درخواست"
           className={{ className: "!bg-info text-white " }}

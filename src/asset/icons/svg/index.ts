@@ -10,7 +10,7 @@ import { ReactComponent as TV } from "./tv.svg";
 import { ReactComponent as xCircle } from "./xCircle.svg";
 import { ReactComponent as Stop } from "./stop.svg";
 import { ReactComponent as Dwon } from "./chevronDown.svg";
-
+import { ReactComponent as Tik } from "./tik.svg";
 const Icons = {
   Menu,
   Back,
@@ -24,6 +24,7 @@ const Icons = {
   xCircle,
   Stop,
   Dwon,
+  Tik,
 };
 export type IconsType = keyof typeof Icons;
 
