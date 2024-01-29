@@ -45,7 +45,7 @@ export const Home = () => {
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
           type="None"
-          href=""
+          href="Learn"
         >
           <Icon iconType="TV" className="text-successDark h-7 w-7" />
           آموزش
