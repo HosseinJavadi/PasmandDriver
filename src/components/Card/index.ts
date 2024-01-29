@@ -9,3 +9,9 @@ export interface RequestCardInterface extends RequestInterface {}
 export interface RequestDriverCardInterface extends RequestDriverInterface {
   className?: string;
 }
+
+export interface LearnPostCardInterface {
+  imgSrc: string;
+  title: string;
+  text: string;
+}
