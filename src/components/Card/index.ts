@@ -12,6 +12,7 @@ export interface RequestDriverCardInterface extends RequestDriverInterface {
 }
 
 export interface LearnPostCardInterface {
+  id: number;
   imgSrc: string;
   title: string;
   text: string;
