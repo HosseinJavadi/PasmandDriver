@@ -4,6 +4,7 @@ import Drawer from "../Drawer/Drawer";
 import { DrawerContext } from "../../context";
 import { HeaderInterface } from "./Index";
 import { Avatar } from "../Avatar";
+import { Link } from "react-router-dom";
 
 export const Header: React.FC<HeaderInterface> = ({ user }) => {
   const drawerContext = useContext(DrawerContext);
@@ -16,7 +17,9 @@ export const Header: React.FC<HeaderInterface> = ({ user }) => {
           iconType="Menu"
           onClick={() => drawerContext.toggle?.()}
         />
-        <Avatar url={user.avatar} className="!h-full !w-auto" />
+        <Link to={"/User/Profile"} className="!h-full !w-auto">
+          <Avatar url={user.avatar} className="!h-full !w-full" />
+        </Link>
       </header>
     </>
   );
