@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Icon } from "../../asset/icons";
 import { Button } from "../../components/Button";
 import { Slider } from "../../components/Swiper";
@@ -67,7 +68,7 @@ export const Home = () => {
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
           type="None"
-          href=""
+          href="User/Profile"
         >
           <Icon iconType="User" className="text-black h-7 w-7" />
           کاربری

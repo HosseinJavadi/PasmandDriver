@@ -1,3 +1,3 @@
-import Darkhast from "./darkhast-fori.png";
-
-export { Darkhast };
+import DarkhastImage from "./darkhast-fori.png";
+import AvatarImage from "./Avatar.png";
+export { DarkhastImage, AvatarImage };

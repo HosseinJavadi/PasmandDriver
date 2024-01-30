@@ -1,9 +1,16 @@
 import { PayloadAction, SliceCaseReducers } from "@reduxjs/toolkit";
 import { GenerateSlice } from "../generateSlice";
-import { UserInterface } from "..";
 
 const slice = GenerateSlice<UserInterface, SliceCaseReducers<UserInterface>>({
-  initialState: { family: "", name: "" },
+  initialState: {
+    address: "",
+    firstName: "حسین",
+    lastName: "جوادی",
+    nationalCode: "07004654714",
+    avatar: "",
+    birthDate: new Date(),
+    mobile: "",
+  },
   name: "User",
   reducers: {
     update: (state, payload: PayloadAction<UserInterface>) => {},
