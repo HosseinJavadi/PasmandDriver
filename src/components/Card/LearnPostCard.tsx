@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "../Button";
 import { LearnPostCardInterface } from ".";
-import { useNavigate } from "react-router-dom";
 
 export const LearnPostCard: React.FC<LearnPostCardInterface> = ({
   id: learnId,
@@ -9,7 +8,6 @@ export const LearnPostCard: React.FC<LearnPostCardInterface> = ({
   title,
   text,
 }) => {
-  const navigate = useNavigate();
   return (
     <div className=" border-[1px] rounded-xl overflow-hidden border-secondary">
       <img
@@ -23,7 +21,7 @@ export const LearnPostCard: React.FC<LearnPostCardInterface> = ({
         <Button
           title="ادامه مطلب"
           type="Normal"
-          onClick={() => navigate(String(learnId))}
+          href={`/Learn/Detail/${learnId}`}
           className={{ className: "mx-auto w-full xs:w-[50%]" }}
         />
       </div>

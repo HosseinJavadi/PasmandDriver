@@ -33,7 +33,7 @@ export const routers = createBrowserRouter([
         element: <Learn />,
       },
       {
-        path: "/Learn/:learnId",
+        path: "/Learn/Detail/:learnId",
         element: <LearnDetails />,
       },
       {
