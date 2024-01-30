@@ -4,8 +4,9 @@ import { ErrorBoundary } from "../ErrorBoundary/Index";
 import { Home } from "../Home";
 import { FAQ } from "../FAQ";
 import { ConfirmRequest, DoneRequests } from "../Request";
-import { Learn } from "../Learn";
+import { Learn, LearnDetails } from "../Learn";
 import { Profile } from "../User";
+
 export const routers = createBrowserRouter([
   {
     element: <App />,
@@ -30,6 +31,10 @@ export const routers = createBrowserRouter([
       {
         path: "/Learn",
         element: <Learn />,
+      },
+      {
+        path: "/Learn/:learnId",
+        element: <LearnDetails />,
       },
       {
         path: "/User/Profile",
