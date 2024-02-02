@@ -3,7 +3,12 @@ import App from "../../App";
 import { ErrorBoundary } from "../ErrorBoundary/Index";
 import { Home } from "../Home";
 import { FAQ } from "../FAQ";
-import { Request, DoneRequests, RequestConfirm } from "../Request";
+import {
+  Request,
+  DoneRequests,
+  RequestConfirm,
+  DetailRequest,
+} from "../Request";
 import { Learn, LearnDetails } from "../Learn";
 import { Profile } from "../User";
 
@@ -28,6 +33,7 @@ export const routers = createBrowserRouter([
         path: "/Request/DoneRequests",
         element: <DoneRequests />,
       },
+      { path: "/Request/Detail/:detailId", element: <DetailRequest /> },
       {
         path: "/Learn",
         element: <Learn />,

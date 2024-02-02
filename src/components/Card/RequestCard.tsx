@@ -42,6 +42,7 @@ export const RequestCard: React.FC<RequestCardInterface> = ({
 
         <Button
           title="جزئیات درخواست"
+          href="/Request/Detail/684"
           className={{ className: "!bg-info text-white " }}
         />
       </div>
