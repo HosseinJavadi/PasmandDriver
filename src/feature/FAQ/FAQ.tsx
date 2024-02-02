@@ -1,5 +1,6 @@
 import { Button } from "../../components/Button";
 import { CollapseGroup, CollapseInterface } from "../../components/Collapse";
+import { Image } from "../../components/Image";
 
 export const FAQ = () => {
   const items: Array<CollapseInterface> = [
@@ -35,7 +36,7 @@ export const FAQ = () => {
   return (
     <>
       <div className="p-2">
-        <img src="/FAQ4.png" />
+        <Image src="/FAQ4.png" />
         <h1 className="text-center text-md mt-5">سوالات متداول</h1>
         <CollapseGroup items={items} className="mt-6 " />
         <div className="flex justify-between items-center px-4  w-full mt-8">

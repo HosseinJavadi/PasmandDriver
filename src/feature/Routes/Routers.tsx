@@ -3,7 +3,7 @@ import App from "../../App";
 import { ErrorBoundary } from "../ErrorBoundary/Index";
 import { Home } from "../Home";
 import { FAQ } from "../FAQ";
-import { ConfirmRequest, DoneRequests } from "../Request";
+import { Request, DoneRequests, RequestConfirm } from "../Request";
 import { Learn, LearnDetails } from "../Learn";
 import { Profile } from "../User";
 
@@ -21,11 +21,11 @@ export const routers = createBrowserRouter([
         element: <FAQ />,
       },
       {
-        path: "/ConfirmRequest",
-        element: <ConfirmRequest />,
+        path: "/Request",
+        element: <Request />,
       },
       {
-        path: "/DoneRequests",
+        path: "/Request/DoneRequests",
         element: <DoneRequests />,
       },
       {
@@ -39,6 +39,10 @@ export const routers = createBrowserRouter([
       {
         path: "/User/Profile",
         element: <Profile />,
+      },
+      {
+        path: "/Request/RequestConfirm",
+        element: <RequestConfirm />,
       },
     ],
   },

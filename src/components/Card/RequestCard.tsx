@@ -1,25 +1,8 @@
-import { RequestCardInterface } from ".";
+import { RequestCardInterface, requestMode } from ".";
 import { IconsType } from "../../asset/icons/svg";
 import { RequestStatusEnum } from "../../interfaces/RequestInterface";
 import { Button } from "../Button";
 
-type RequestMode = {
-  color: string;
-  icon: IconsType;
-};
-let requestMode: { [id: string]: RequestMode } = {};
-requestMode[RequestStatusEnum.DriverCanceled] = {
-  color: "text-danger",
-  icon: "xCircle",
-};
-requestMode[RequestStatusEnum.UserCanceled] = {
-  color: "text-danger",
-  icon: "xCircle",
-};
-requestMode[RequestStatusEnum.Done] = {
-  color: "text-success",
-  icon: "Tik",
-};
 export const RequestCard: React.FC<RequestCardInterface> = ({
   address,
   dateTime,

@@ -1,5 +1,9 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { RequestCardInterface, RequestDriverCardInterface } from ".";
+import {
+  RequestCardInterface,
+  RequestDriverCardInterface,
+  requestMode,
+} from ".";
 import { GarbageType } from "../../interfaces/RequestDriverInterface";
 import { RequestStatusEnum } from "../../interfaces/RequestInterface";
 import { Button } from "../Button";
@@ -11,6 +15,7 @@ export const RequestDriverCard: React.FC<RequestDriverCardInterface> = ({
   price,
   status,
   garbages,
+  isShowStatus,
   className = "",
 }) => {
   const columnHelper = createColumnHelper<GarbageType>();
@@ -40,6 +45,17 @@ export const RequestDriverCard: React.FC<RequestDriverCardInterface> = ({
     >
       <div className="flex justify-between items-center w-full">
         <p>{address}</p>
+        {isShowStatus && (
+          <Button
+            type="Icon"
+            className={{
+              className: "text-[10px] bg-secondary !text-black gap-2",
+              iconClassName: ` ${requestMode[RequestStatusEnum[status]].color}`,
+            }}
+            icon={requestMode[RequestStatusEnum[status]].icon}
+            title={RequestStatusEnum[status]}
+          />
+        )}
       </div>
       <div className="flex justify-start items-center w-full">
         {`قیمت کل : ${price.toPersion()} تومان`}

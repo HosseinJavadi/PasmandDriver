@@ -1,8 +1,9 @@
 import { DarkhastImage } from "../../asset/images";
+import { Image } from "../../components/Image";
 import { RequestSwiper } from "../../components/Swiper";
 import { GarbageType } from "../../interfaces/RequestDriverInterface";
 
-export const ConfirmRequest = () => {
+export const Request = () => {
   const garbages: GarbageType[] = [
     { title: "پلاستیک", priceUnit: 2000, totoalPrice: 200000, wieght: 5 },
     { title: "کارتن", priceUnit: 2000, totoalPrice: 200000, wieght: 5 },
@@ -10,7 +11,7 @@ export const ConfirmRequest = () => {
   ];
   return (
     <div className="p-2">
-      <img src={DarkhastImage} />
+      <Image src={DarkhastImage} />
       <RequestSwiper
         className="mt-10"
         items={Array(20)

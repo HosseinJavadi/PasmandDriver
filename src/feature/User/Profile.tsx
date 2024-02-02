@@ -31,8 +31,8 @@ export const Profile = () => {
           <p className="col-span-2">{user.address}</p>
         </div>
       </div>
-      <div className="fixed bottom-2 w-full flex justify-between items-center ">
-        <p className="w-[70%]">
+      <div className="fixed bottom-2 w-full flex justify-between items-center px-3">
+        <p className="w-[60%]">
           برای تغییرات پروفایل خود لطفا{" "}
           <span className="font-bold">درخواست تغییرات</span> را کلیک کنید
         </p>

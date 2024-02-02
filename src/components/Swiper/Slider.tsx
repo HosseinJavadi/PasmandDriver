@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import React from "react";
 import { SliderInterface } from ".";
+import { Image } from "../Image";
 
 export const Slider: React.FC<SliderInterface> = ({ className = "" }) => {
   return (
@@ -24,16 +25,16 @@ export const Slider: React.FC<SliderInterface> = ({ className = "" }) => {
         className={`bg-other ${className}`}
       >
         <SwiperSlide>
-          <img src="/categories-banner.jpg" />
+          <Image src="/categories-banner.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/darkhast-addi.jpg" />
+          <Image src="/darkhast-addi.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/home-cover.jpg" />
+          <Image src="/home-cover.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/magazine_cover.jpg" />
+          <Image src="/magazine_cover.jpg" />
         </SwiperSlide>
       </Swiper>
     </>

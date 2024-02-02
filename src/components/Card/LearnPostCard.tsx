@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../Button";
 import { LearnPostCardInterface } from ".";
+import { Image } from "../Image";
 
 export const LearnPostCard: React.FC<LearnPostCardInterface> = ({
   id: learnId,
@@ -10,7 +11,7 @@ export const LearnPostCard: React.FC<LearnPostCardInterface> = ({
 }) => {
   return (
     <div className=" border-[1px] rounded-xl overflow-hidden border-secondary">
-      <img
+      <Image
         src={imgSrc}
         className=" max-h-[50vh] object-cover w-full"
         alt={title}

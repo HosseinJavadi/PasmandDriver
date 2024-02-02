@@ -57,7 +57,7 @@ export const Home = () => {
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
           type="None"
-          href="DoneRequests"
+          href="Request/DoneRequests"
         >
           <Icon iconType="Report" className="text-primaryLight h-7 w-7" />
           درخواست ها
@@ -79,7 +79,7 @@ export const Home = () => {
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
           type="None"
-          href="ConfirmRequest"
+          href="Request"
         >
           <Icon iconType="Letter" className="text-primary h-7 w-7" />
           شروع کار

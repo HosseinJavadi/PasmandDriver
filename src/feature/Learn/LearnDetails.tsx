@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { learnData } from "./index";
 import { Button } from "../../components/Button";
+import { Image } from "../../components/Image";
 
 export const LearnDetails = () => {
   const params = useParams();
@@ -12,7 +13,7 @@ export const LearnDetails = () => {
         <div className="p-2">
           <div className="max-w-7xl border-[1px] border-secondary p-6 mx-auto rounded-lg shadow-md overflow-hidden">
             <div>
-              <img
+              <Image
                 src={learnPost.imgSrc}
                 alt="learn-post-cover"
                 className="max-h-[60vh] object-cover overflow-hidden w-full rounded-lg shadow-[0_0_3px] shadow-secondaryDark"

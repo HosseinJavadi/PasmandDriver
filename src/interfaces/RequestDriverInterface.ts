@@ -1,4 +1,4 @@
-import { RequestInterface } from "./RequestInterface";
+import { RequestInterface, RequestStatusEnum } from "./RequestInterface";
 
 export type GarbageType = {
   wieght: number;
