@@ -3,7 +3,7 @@ import { CollapseGroupInterface } from ".";
 import Collapse from "./Collapse";
 
 type CurrentCollapseType = {
-  index: number;
+  index?: number;
   show: boolean;
 };
 
@@ -13,7 +13,6 @@ export const CollapseGroup: React.FC<CollapseGroupInterface> = ({
   className = "",
 }) => {
   const [currentCollapse, setCurrentCollapse] = useState<CurrentCollapseType>({
-    index: 0,
     show: true,
   });
   return (

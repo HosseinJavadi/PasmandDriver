@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { ButtonHTMLAttributes, useEffect, useId, useState } from "react";
 import { Form, FormInterface } from "../components/Form";
 import {
   CreatorFormInterface,
@@ -9,6 +9,8 @@ import {
   ValidationHandlersType,
 } from ".";
 import { TextBox } from "../components/TextBox";
+import { Button, ButtonInterface } from "../components/Button";
+import { toast } from "react-toastify";
 
 const ValidationHandlers: Array<ValidationHandlersType> = [];
 const CheckValidation = (
@@ -38,8 +40,21 @@ const FormCreator = <T extends {}>({
   className,
   onSubmit,
 }: FormInterface<T>): CreatorFormInterface => {
+  const submit = (e: any) => {
+    var countError = 0;
+    const inValid = (message: string) => {
+      toast.error(message);
+      countError++;
+    };
+
+    Object.getOwnPropertyNames(e).forEach((n) => {
+      CheckValidation(n, e[n], undefined, inValid);
+    });
+
+    countError === 0 && onSubmit?.(e as T);
+  };
   return (
-    <Form<T> className={className} onSubmit={onSubmit}>
+    <Form<T> className={className} onSubmit={submit}>
       {children}
     </Form>
   );
@@ -51,6 +66,7 @@ FormCreator.TextBox = function ({
   onChange,
   classNameParent = "",
   classNameError = "",
+  placeholder,
 }: TextBoxFormInterface<unknown>) {
   const id = `${name}_${Math.random()}`;
   const inValid = (message: string) => {
@@ -66,9 +82,19 @@ FormCreator.TextBox = function ({
         name={name}
         className={className}
         onChange={(param) => CheckValidation(name, param, isValid, inValid)}
+        placeholder={placeholder}
       />
       <p id={id} className={`text-danger w-full ${classNameError} mt-2`}></p>
     </div>
+  );
+};
+FormCreator.Submit = function (
+  props: Omit<ButtonInterface, "type">
+): React.ReactElement {
+  return (
+    <>
+      <Button {...props} type="submit" />
+    </>
   );
 };
 export const useForm = <T extends {}>({

@@ -6,7 +6,8 @@ enum ButtonEnum {
   None,
 }
 export interface ButtonInterface {
-  type?: keyof typeof ButtonEnum;
+  btnType?: keyof typeof ButtonEnum;
+  type?: "submit" | "button";
   title?: string;
   className?: { className?: string; iconClassName?: string };
   icon?: IconsType;

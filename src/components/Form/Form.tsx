@@ -8,8 +8,12 @@ export const Form = <T extends {}>({
 }: FormInterface<T>) => {
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    onSubmit?.();
+    const properties = e.currentTarget.getElementsByTagName("input");
+    var obj: any = {};
+    Array.from(properties).forEach((n) => {
+      obj[n.name] = n.value;
+    });
+    onSubmit?.(obj as T);
   };
   return (
     <>

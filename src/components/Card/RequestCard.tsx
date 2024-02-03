@@ -17,7 +17,7 @@ export const RequestCard: React.FC<RequestCardInterface> = ({
       <div className="flex justify-between items-center w-full">
         <p>{address}</p>
         <Button
-          type="Icon"
+          btnType="Icon"
           className={{
             className: "text-[10px] bg-secondary !text-black gap-2",
             iconClassName: ` ${requestMode[RequestStatusEnum[status]].color}`,

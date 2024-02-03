@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../../App";
+import { AppLogin, App } from "../../@App";
 import { ErrorBoundary } from "../ErrorBoundary/Index";
 import { Home } from "../Home";
 import { FAQ } from "../FAQ";
@@ -11,6 +11,7 @@ import {
 } from "../Request";
 import { Learn, LearnDetails } from "../Learn";
 import { Profile } from "../User";
+import { Login, RegisterOrVerify } from "../Login";
 
 export const routers = createBrowserRouter([
   {
@@ -49,6 +50,20 @@ export const routers = createBrowserRouter([
       {
         path: "/Request/RequestConfirm",
         element: <RequestConfirm />,
+      },
+    ],
+  },
+  {
+    errorElement: <ErrorBoundary />,
+    element: <AppLogin />,
+    children: [
+      {
+        path: "/Login",
+        element: <Login />,
+      },
+      {
+        path: "/Verify",
+        element: <RegisterOrVerify />,
       },
     ],
   },

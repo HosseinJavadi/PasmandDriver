@@ -32,7 +32,7 @@ const StatusRequest = ({
 
   return (
     <Button
-      type="Icon"
+      btnType="Icon"
       className={{
         className: "text-[10px] bg-secondary !text-black gap-2",
         iconClassName: ` ${requestMode[RequestStatusEnum[status]].color}`,

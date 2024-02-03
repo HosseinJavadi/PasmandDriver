@@ -4,13 +4,16 @@ export const TextBox = <T extends string>({
   className = "",
   name,
   onChange,
+  placeholder,
 }: TextBoxInterface<T>) => {
   return (
     <>
       <input
         type="text"
         name={name}
-        className={` ${className} outline-none  ring-successLight ring-1 rounded-sm py-1 w-full`}
+        autoComplete="off"
+        placeholder={placeholder}
+        className={` ${className} outline-none  ring-successLight ring-1 rounded-md py-1 w-full px-4 min-h-10 font-bold`}
         onChange={(e) => onChange?.(e.target.value)}
       />
     </>

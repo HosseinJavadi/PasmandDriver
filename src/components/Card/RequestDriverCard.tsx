@@ -47,7 +47,7 @@ export const RequestDriverCard: React.FC<RequestDriverCardInterface> = ({
         <p>{address}</p>
         {isShowStatus && (
           <Button
-            type="Icon"
+            btnType="Icon"
             className={{
               className: "text-[10px] bg-secondary !text-black gap-2",
               iconClassName: ` ${requestMode[RequestStatusEnum[status]].color}`,

@@ -30,9 +30,9 @@ const Collapse = ({
           <div className="flex gap-1 justify-center items-center">
             <Icon
               iconType={icon}
-              className={` text-xl ${index ? "!text-white" : ""}   ${
-                className?.iconClass ?? ""
-              }`}
+              className={` text-xl ${
+                index ? "!text-white" : "text-primary"
+              }   ${className?.iconClass ?? ""}`}
             />
             <span className={`${className?.titleClass ?? ""} `}>{title}</span>
           </div>

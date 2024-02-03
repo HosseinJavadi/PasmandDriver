@@ -1,38 +1,29 @@
+import { useEffect } from "react";
+import { RequestApi } from "../../apis";
 import { Button } from "../../components/Button";
 import { CollapseGroup, CollapseInterface } from "../../components/Collapse";
 import { Image } from "../../components/Image";
-
+import { useFetch } from "../../hooks";
+import { BaseResponseInterface, FAQResponseType } from "../../interfaces";
 export const FAQ = () => {
-  const items: Array<CollapseInterface> = [
-    {
-      title: "در آمد در این اپلیکیشین واقعی هست ؟",
-      icon: "Letter",
-      element: <>asdasdasdadadadsadadsadsadadadadadadasdsadsadasd</>,
-    },
-    {
-      title: "در آمد در این اپلیکیشین واقعی هست ؟",
-      icon: "Letter",
-    },
-    {
-      title: "در آمد در این اپلیکیشین واقعی هست ؟",
-      icon: "Letter",
-    },
-    {
-      title: "در آمد در این اپلیکیشین واقعی هست ؟",
-      icon: "Letter",
-    },
-    {
-      title: "در آمد در این اپلیکیشین واقعی هست ؟",
-      icon: "Letter",
-      element: (
-        <div className="p-2  break-all">
-          {Array(1000)
-            .fill(0)
-            .map((n) => n)}
-        </div>
-      ),
-    },
-  ];
+  const { data, reFetch } = useFetch<
+    BaseResponseInterface<Array<FAQResponseType>>,
+    any,
+    any
+  >({
+    request: RequestApi.getFAQList({ type: "driver" }, ""),
+  });
+  useEffect(() => {
+    reFetch(null, { type: "driver" });
+  }, []);
+  const items: Array<CollapseInterface> | undefined =
+    data?.data?.data?.map<CollapseInterface>((n) => {
+      return {
+        title: n.title,
+        element: <p>{n.description}</p>,
+        icon: "Question",
+      };
+    });
   return (
     <>
       <div className="p-2">

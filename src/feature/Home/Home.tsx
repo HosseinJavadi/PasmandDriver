@@ -13,7 +13,7 @@ export const Home = () => {
           className: "mx-auto mt-5 gap-5 px-3",
           iconClassName: "text-warn",
         }}
-        type="Icon"
+        btnType="Icon"
         icon="Star"
         href=""
       />
@@ -23,7 +23,7 @@ export const Home = () => {
             className:
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
-          type="None"
+          btnType="None"
           href="FAQ"
         >
           <Icon iconType="Question" className="text-info h-7 w-7 " />
@@ -45,7 +45,7 @@ export const Home = () => {
             className:
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
-          type="None"
+          btnType="None"
           href="Learn"
         >
           <Icon iconType="TV" className="text-successDark h-7 w-7" />
@@ -56,7 +56,7 @@ export const Home = () => {
             className:
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
-          type="None"
+          btnType="None"
           href="Request/DoneRequests"
         >
           <Icon iconType="Report" className="text-primaryLight h-7 w-7" />
@@ -67,7 +67,7 @@ export const Home = () => {
             className:
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
-          type="None"
+          btnType="None"
           href="User/Profile"
         >
           <Icon iconType="User" className="text-black h-7 w-7" />
@@ -78,7 +78,7 @@ export const Home = () => {
             className:
               "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
           }}
-          type="None"
+          btnType="None"
           href="Request"
         >
           <Icon iconType="Letter" className="text-primary h-7 w-7" />

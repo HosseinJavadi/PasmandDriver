@@ -16,7 +16,7 @@ export interface CollapseInterface {
 export interface CollapseGroupInterface {
   className?: string;
   removeElementAfterChange?: boolean;
-  items: Array<CollapseInterface>;
+  items?: Array<CollapseInterface>;
 }
 export * from "./Collapse";
 export * from "./CollapseGroup";

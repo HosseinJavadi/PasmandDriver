@@ -21,7 +21,7 @@ export const LearnPostCard: React.FC<LearnPostCardInterface> = ({
         <p className="text-sm text-black">{text.slice(0, 125)}...</p>
         <Button
           title="ادامه مطلب"
-          type="Normal"
+          btnType="Normal"
           href={`/Learn/Detail/${learnId}`}
           className={{ className: "mx-auto w-full xs:w-[50%]" }}
         />

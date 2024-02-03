@@ -7,15 +7,16 @@ export const Button: React.FC<ButtonInterface> = ({
   icon,
   className,
   children,
-  type = "Normal",
+  btnType = "Normal",
   letter,
+  type = "button",
   href,
   onClick,
 }) => {
   var element: React.ReactNode;
   var classNameObj: typeof className | undefined = className;
 
-  switch (type) {
+  switch (btnType) {
     case "Icon":
       element = (
         <>
@@ -61,7 +62,11 @@ export const Button: React.FC<ButtonInterface> = ({
           {element}
         </Link>
       ) : (
-        <button className={className.className} onClick={() => onClick?.()}>
+        <button
+          type={type}
+          className={className.className}
+          onClick={() => onClick?.()}
+        >
           {element}
         </button>
       )}

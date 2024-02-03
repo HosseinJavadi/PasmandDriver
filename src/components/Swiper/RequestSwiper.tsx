@@ -25,8 +25,8 @@ export const RequestSwiper: React.FC<RequestSwiperInterface> = ({
         className={`absolute w-[200%] left-[50%] ${className}`}
       >
         {items.map((n, i) => (
-          <SwiperSlide>
-            <RequestDriverCard {...n} key={i} />
+          <SwiperSlide key={i}>
+            <RequestDriverCard {...n} />
           </SwiperSlide>
         ))}
       </Swiper>
