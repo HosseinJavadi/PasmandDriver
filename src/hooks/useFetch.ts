@@ -1,10 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import {
-  RequestInterface,
-  ResponseInterface,
-  UseFetchRequest,
-  UseFetchResponse,
-} from ".";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { RequestInterface, UseFetchRequest, UseFetchResponse } from ".";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { ErrorResponseInterface } from "../interfaces";
@@ -13,8 +8,8 @@ import { toast } from "react-toastify";
 export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
   request,
   errorHandler,
-  fetchInitial,
   onSuccess,
+  fetchInitial = false,
 }: UseFetchRequest<TData, TBody, TQuery>): UseFetchResponse<
   TData,
   TBody,
@@ -32,12 +27,12 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
     retry: 0,
     enabled: enable,
   });
-
   useEffect(() => {
-    if (fetch && fetch.isSuccess && !fetch.error) {
+    if (fetch && !fetch.error && fetch.isSuccess) {
       onSuccess?.(fetch.data);
+      setEnable(false);
     }
-  }, [fetch]);
+  }, [fetch.data]);
 
   if (!fetch.error && fetch.isSuccess) {
     return {
@@ -45,15 +40,15 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
         error: fetch.error,
         status: fetch.status,
         data: fetch.data,
-        isLoading: fetch.isFetching,
       },
       reFetch(payload, query) {
         setBody({ ...body, body: payload, query: query });
         setEnable(true);
       },
+      requestDetail: body,
+      isLoading: fetch.isFetching,
     };
   } else if (fetch.error) {
-    debugger;
     if (fetch.error instanceof AxiosError) {
       if (errorHandler)
         errorHandler(
@@ -73,13 +68,18 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
         setBody({ ...body, body: payload, query: query });
         setEnable(true);
       },
+      requestDetail: body,
+      isLoading: fetch.isFetching,
     };
   }
+
   return {
     reFetch(payload, query) {
       setBody({ ...body, body: payload, query: query });
       setEnable(true);
     },
+    requestDetail: body,
+    isLoading: fetch.isFetching,
   };
 };
 

@@ -25,7 +25,13 @@ class RequestApi {
       url: this.creatorUrl("api/pasmand/user-driver/login/app"),
     };
   }
-  verifyCode(): RequestInterface<{ nationalCode: string }, unknown> {
+  registerUser(): RequestInterface<RegisterInterface, unknown> {
+    return {
+      method: "Post",
+      url: this.creatorUrl("api/pasmand/user-driver/sms/login/app"),
+    };
+  }
+  getSMSVerifyCode(): RequestInterface<{ nationalCode: string }, unknown> {
     return {
       method: "Post",
       url: this.creatorUrl("api/pasmand/user-driver/sms/app"),

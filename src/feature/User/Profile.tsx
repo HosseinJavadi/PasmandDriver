@@ -14,16 +14,18 @@ export const Profile = () => {
           <h1 className="text-sm">پروفایل</h1>
         </div>
         <div className="grid grid-cols-1 justify-items-center items-center gap-2">
-          <Avatar />
+          <Avatar url={user.avatar} />
           <h4 className="text-sm text-primaryLight font-bold">{`${user.firstName} ${user.lastName}`}</h4>
-          <h3 className=" text-primaryDark">{user.nationalCode.toPersion()}</h3>
+          <h3 className=" text-primaryDark">
+            {user.nationalCode?.toPersion()}
+          </h3>
         </div>
 
-        <div className="w-full grid grid-cols-2 mt-10 gap-4 justify-items-center  font-bold">
+        <div className="w-full grid grid-cols-2  gap-4 justify-items-center  font-bold">
           {user.birthDate ? (
             <>
               <span>{user.mobile}</span>
-              <span>{user.birthDate.toShamsiDate()}</span>
+              <span>{user.birthDate}</span>
             </>
           ) : (
             <span className="col-span-2">{user.mobile}</span>

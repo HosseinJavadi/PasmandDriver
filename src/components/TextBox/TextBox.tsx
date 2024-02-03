@@ -5,11 +5,12 @@ export const TextBox = <T extends string>({
   name,
   onChange,
   placeholder,
+  type = "text",
 }: TextBoxInterface<T>) => {
   return (
     <>
       <input
-        type="text"
+        type={type}
         name={name}
         autoComplete="off"
         placeholder={placeholder}

@@ -46,16 +46,17 @@ export interface ResponseInterface<T> {
   data?: T;
   status: "error" | "success" | "pending";
   error: Error | null;
-  isLoading?: boolean;
   reFetch?: () => void;
 }
 export interface UseFetchRequest<TData, TPayload, TQuery> {
-  fetchInitial?: boolean;
   request: RequestInterface<TPayload, TQuery>;
   errorHandler?: (error: ErrorResponseInterface | null) => void;
   onSuccess?: (data: TData) => void;
+  fetchInitial?: boolean;
 }
 export interface UseFetchResponse<TData, TPayload, TQuery> {
   data?: ResponseInterface<TData>;
   reFetch: (payload?: TPayload, query?: TQuery) => void;
+  requestDetail: RequestInterface<TPayload, TQuery>;
+  isLoading: boolean;
 }

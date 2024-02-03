@@ -6,7 +6,7 @@ export const RequestConfirm = () => {
   const Form = useForm<UserInterface>({
     validations: {
       RoleForAddress: (value) => {
-        if (value.length > 3) return true;
+        if (value && value.length > 3) return true;
         else return "آدرس نمیتواند کمتر از سه کارکتر باشد";
       },
     },

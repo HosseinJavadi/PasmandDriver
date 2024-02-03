@@ -24,7 +24,6 @@ export function App() {
   });
   return (
     <>
-      {" "}
       <QueryClientProvider client={queryClient}>
         <DrawerContext.Provider
           value={{

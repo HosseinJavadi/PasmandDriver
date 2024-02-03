@@ -50,7 +50,6 @@ const FormCreator = <T extends {}>({
     Object.getOwnPropertyNames(e).forEach((n) => {
       CheckValidation(n, e[n], undefined, inValid);
     });
-
     countError === 0 && onSubmit?.(e as T);
   };
   return (
@@ -67,6 +66,7 @@ FormCreator.TextBox = function ({
   classNameParent = "",
   classNameError = "",
   placeholder,
+  type,
 }: TextBoxFormInterface<unknown>) {
   const id = `${name}_${Math.random()}`;
   const inValid = (message: string) => {
@@ -83,6 +83,7 @@ FormCreator.TextBox = function ({
         className={className}
         onChange={(param) => CheckValidation(name, param, isValid, inValid)}
         placeholder={placeholder}
+        type={type}
       />
       <p id={id} className={`text-danger w-full ${classNameError} mt-2`}></p>
     </div>
