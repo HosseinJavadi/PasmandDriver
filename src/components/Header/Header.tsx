@@ -18,7 +18,14 @@ export const Header: React.FC<HeaderInterface> = ({ user }) => {
           onClick={() => drawerContext.toggle?.()}
         />
         <Link to={"/User/Profile"} className="!h-full !w-auto">
-          <Avatar url={user.avatar} className="!h-full !w-full" />
+          <Avatar
+            url={
+              user.avatar
+                ? `${process.env.REACT_APP_BASE_URL}/${user.avatar}`
+                : ""
+            }
+            className="!h-full !w-full"
+          />
         </Link>
       </header>
     </>

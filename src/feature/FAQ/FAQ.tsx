@@ -3,15 +3,20 @@ import { RequestApi } from "../../apis";
 import { Button } from "../../components/Button";
 import { CollapseGroup, CollapseInterface } from "../../components/Collapse";
 import { Image } from "../../components/Image";
-import { useFetch } from "../../hooks";
+import { useAppSelector, useFetch } from "../../hooks";
 import { BaseResponseInterface, FAQResponseType } from "../../interfaces";
 export const FAQ = () => {
+  const user = useAppSelector((state) => state.userReducer);
   const { data, reFetch } = useFetch<
     BaseResponseInterface<Array<FAQResponseType>>,
     any,
     any
   >({
-    request: RequestApi.getFAQList({ type: "driver" }, ""),
+    request: RequestApi.getFAQList(
+      { type: "driver" },
+      user.accessToken!,
+      user.refreshToken!
+    ),
   });
   useEffect(() => {
     reFetch(null, { type: "driver" });

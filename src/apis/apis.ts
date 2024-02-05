@@ -3,19 +3,22 @@ import { UserLoginInterface, RegisterInterface } from "../interfaces";
 
 class RequestApi {
   private baseUrl: string = "";
-  private creatorToken = (token: string) => `bearer ${token}`;
+  private creatorToken = (accessToken: string, refreshToken: string) => {
+    return { accessToken, refreshToken };
+  };
   private creatorUrl = (token: string) => `${this.baseUrl}${token}`;
   constructor() {
     this.baseUrl = process.env.REACT_APP_BASE_URL as string;
   }
   getFAQList(
     query: { type: "driver" },
-    token: string
+    accessToken: string,
+    refreshToken: string
   ): RequestInterface<unknown, { type: "driver" }> {
     return {
       method: "Get",
       url: this.creatorUrl("api/pasmand/question"),
-      header: { token: this.creatorToken(token) },
+      header: this.creatorToken(accessToken, refreshToken),
       query: query,
     };
   }
@@ -35,6 +38,27 @@ class RequestApi {
     return {
       method: "Post",
       url: this.creatorUrl("api/pasmand/user-driver/sms/app"),
+    };
+  }
+  uploadAvatar(
+    accessToken: string,
+    refreshToken: string
+  ): RequestInterface<FormData, unknown> {
+    return {
+      method: "Post",
+      url: this.creatorUrl("api/pasmand/user-driver/upload/app"),
+      header: this.creatorToken(accessToken, refreshToken),
+      reuqestType: "form-data",
+    };
+  }
+  deleteAvatar(
+    accessToken: string,
+    refreshToken: string
+  ): RequestInterface<unknown, unknown> {
+    return {
+      method: "Delete",
+      url: this.creatorUrl("api/pasmand/user-driver/upload/app"),
+      header: this.creatorToken(accessToken, refreshToken),
     };
   }
 }

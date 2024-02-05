@@ -49,7 +49,7 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
       isLoading: fetch.isFetching,
     };
   } else if (fetch.error) {
-    if (fetch.error instanceof AxiosError) {
+    if (fetch.error instanceof AxiosError && fetch.error.response) {
       if (errorHandler)
         errorHandler(
           fetch.error.response?.data as unknown as ErrorResponseInterface
@@ -89,10 +89,15 @@ const creatorAxios = <TData>({
   body,
   header,
   query,
+  reuqestType,
 }: RequestInterface<unknown, unknown>) => {
   if (method === "Post")
-    return axios.post<TData>(url, body, { headers: header });
-  else
+    if (reuqestType && reuqestType == "form-data") {
+      return axios.post<TData>(url, body, {
+        headers: { ...header, "Content-Type": "multipart/form-data" },
+      });
+    } else return axios.post<TData>(url, body, { headers: header });
+  else if (method == "Get")
     return axios.get<TData>(
       `${url}${
         query
@@ -100,6 +105,13 @@ const creatorAxios = <TData>({
               (n) => `${n}=${query[n as keyof typeof query]}`
             )}`
           : ""
-      }`
+      }`,
+      {
+        headers: header,
+      }
     );
+  else
+    return axios.delete(url, {
+      headers: header,
+    });
 };

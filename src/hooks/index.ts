@@ -39,8 +39,9 @@ export interface RequestInterface<TPayload, TQuery> {
   header?: object;
   body?: TPayload;
   query?: TQuery;
-  method: "Post" | "Get";
+  method: "Post" | "Get" | "Delete";
   url: string;
+  reuqestType?: "form-data";
 }
 export interface ResponseInterface<T> {
   data?: T;

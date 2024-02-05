@@ -12,7 +12,12 @@ import { ReactComponent as Stop } from "./stop.svg";
 import { ReactComponent as Dwon } from "./chevronDown.svg";
 import { ReactComponent as Tik } from "./tik.svg";
 import { ReactComponent as Identification } from "./identification.svg";
+import { ReactComponent as Edit } from "./edit.svg";
+import { ReactComponent as Plus } from "./plusCircle.svg";
+import { ReactComponent as Delete } from "./delete.svg";
+
 const Icons = {
+  Delete,
   Menu,
   Back,
   Star,
@@ -27,6 +32,8 @@ const Icons = {
   Dwon,
   Tik,
   Identification,
+  Edit,
+  Plus,
 };
 export type IconsType = keyof typeof Icons;
 

@@ -18,8 +18,11 @@ const slice = GenerateSlice<UserInterface, SliceCaseReducers<UserInterface>>({
       state.refreshToken = payload.refreshToken;
       state.updatedAt = payload.updatedAt;
     },
+    saveAvatar: (state, { payload }: PayloadAction<string>) => {
+      state.avatar = payload;
+    },
   },
 });
 
-export const { loginUser } = slice.actions;
+export const { loginUser, saveAvatar } = slice.actions;
 export default slice.reducer;

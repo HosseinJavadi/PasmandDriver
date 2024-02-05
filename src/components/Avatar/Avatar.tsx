@@ -9,6 +9,9 @@ export const Avatar: React.FC<AvatarInterface> = React.memo(
         <img
           src={url || AvatarImage}
           className={`${className} h-28 w-28 rounded-full object-contain border-2 border-successDark`}
+          onError={(e) => {
+            e.currentTarget.src = AvatarImage;
+          }}
         />
       </>
     );
