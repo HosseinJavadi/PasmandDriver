@@ -1,13 +1,16 @@
-import { RequestCardInterface, requestMode } from ".";
 import { IconsType } from "../../asset/icons/svg";
 import { RequestStatusEnum } from "../../interfaces/RequestInterface";
+import { TimesheetRequestInterface } from "../../interfaces/Timesheet";
 import { Button } from "../Button";
 
-export const RequestCard: React.FC<RequestCardInterface> = ({
+export const RequestCard: React.FC<TimesheetRequestInterface> = ({
   address,
-  dateTime,
-  price,
-  status,
+  accept_request_date_user,
+  category_user: cateqory_user,
+  id,
+  lang,
+  lat,
+  total_category_user,
 }) => {
   return (
     <div
@@ -16,21 +19,12 @@ export const RequestCard: React.FC<RequestCardInterface> = ({
     >
       <div className="flex justify-between items-center w-full">
         <p>{address}</p>
-        <Button
-          btnType="Icon"
-          className={{
-            className: "text-[10px] bg-secondary !text-black gap-2",
-            iconClassName: ` ${requestMode[RequestStatusEnum[status]].color}`,
-          }}
-          icon={requestMode[RequestStatusEnum[status]].icon}
-          title={RequestStatusEnum[status]}
-        />
       </div>
       <div className="flex justify-start items-center w-full">
-        {`قیمت کل : ${price.toPersion()} تومان`}
+        {`قیمت کل : ${total_category_user.toPersion()} تومان`}
       </div>
       <div className="flex justify-start items-center w-full">
-        {`تاریخ و زمان : ${dateTime.toShamsi()}`}
+        {`تاریخ و زمان : ${new Date(accept_request_date_user).toShamsi()}`}
       </div>
       <div className="flex justify-center items-center gap-3">
         {/* {!(status === "DriverCanceled" || status === "UserCanceled") && (

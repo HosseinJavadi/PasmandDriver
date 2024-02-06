@@ -5,7 +5,7 @@ export const DoneRequests = () => {
     <div className="p-2 py-3">
       <h3 className="text-center text-sm">درخواست های انجام شده</h3>
       <div className="grid grid-cols-1 gap-4">
-        {Array(20)
+        {/* {Array(20)
           .fill("")
           .map((n, i) => (
             <RequestCard
@@ -15,7 +15,7 @@ export const DoneRequests = () => {
               price={2002320}
               status={i % 2 == 0 ? "DriverCanceled" : "Done"}
             />
-          ))}
+          ))} */}
       </div>
     </div>
   );

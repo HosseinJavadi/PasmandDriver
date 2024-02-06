@@ -1,5 +1,10 @@
 import { RequestInterface } from "../hooks";
-import { UserLoginInterface, RegisterInterface } from "../interfaces";
+import {
+  UserLoginInterface,
+  RegisterInterface,
+  BaseResponseInterface,
+} from "../interfaces";
+import { TimesheetInterface } from "../interfaces/Timesheet";
 
 class RequestApi {
   private baseUrl: string = "";
@@ -49,6 +54,26 @@ class RequestApi {
       url: this.creatorUrl("api/pasmand/user-driver/upload/app"),
       header: this.creatorToken(accessToken, refreshToken),
       reuqestType: "form-data",
+    };
+  }
+  getTimeSheets(
+    accessToken: string,
+    refreshToken: string
+  ): RequestInterface<unknown, unknown> {
+    return {
+      method: "Get",
+      url: this.creatorUrl("api/pasmand/user-driver/request"),
+      header: this.creatorToken(accessToken, refreshToken),
+    };
+  }
+  setTimeSheetRequest(
+    accessToken: string,
+    refreshToken: string
+  ): RequestInterface<{ timeSheetRequest: string }, unknown> {
+    return {
+      method: "Post",
+      url: this.creatorUrl("api/pasmand/user-driver/request"),
+      header: this.creatorToken(accessToken, refreshToken),
     };
   }
   deleteAvatar(

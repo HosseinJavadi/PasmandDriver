@@ -1,4 +1,3 @@
-import { ButtonHTMLAttributes } from "react";
 import { FormInterface } from "../components/Form";
 import { TextBoxInterface } from "../components/TextBox";
 import { ButtonInterface } from "../components/Button";
@@ -39,7 +38,7 @@ export interface RequestInterface<TPayload, TQuery> {
   header?: object;
   body?: TPayload;
   query?: TQuery;
-  method: "Post" | "Get" | "Delete";
+  method: "Post" | "Get" | "Delete" | "Put";
   url: string;
   reuqestType?: "form-data";
 }

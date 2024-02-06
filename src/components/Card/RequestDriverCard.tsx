@@ -1,39 +1,41 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import {
-  RequestCardInterface,
-  RequestDriverCardInterface,
-  requestMode,
-} from ".";
-import { GarbageType } from "../../interfaces/RequestDriverInterface";
+
 import { RequestStatusEnum } from "../../interfaces/RequestInterface";
 import { Button } from "../Button";
 import { Table } from "../Table";
+import {
+  TimesheetRequestCategoryUserType,
+  TimesheetRequestInterface,
+} from "../../interfaces/Timesheet";
 
-export const RequestDriverCard: React.FC<RequestDriverCardInterface> = ({
+export const RequestDriverCard: React.FC<
+  TimesheetRequestInterface & { onClick: (id: string) => void }
+> = ({
+  accept_request_date_user,
+  category_user: cateqory_user,
+  id,
+  lang,
+  lat,
+  total_category_user,
   address,
-  dateTime,
-  price,
-  status,
-  garbages,
-  isShowStatus,
-  className = "",
+  onClick,
 }) => {
-  const columnHelper = createColumnHelper<GarbageType>();
+  const columnHelper = createColumnHelper<TimesheetRequestCategoryUserType>();
   const columns = [
-    columnHelper.accessor("title", {
+    columnHelper.accessor("categoryId.title", {
       cell: (info) => info.getValue(),
       header: "نوع",
     }),
-    columnHelper.accessor("wieght", {
+    columnHelper.accessor("weight", {
       cell: (info) => info.getValue(),
       header: "وزن",
     }),
-    columnHelper.accessor("priceUnit", {
+    columnHelper.accessor("previous_price", {
       cell: (info) => info.getValue(),
       header: "قیمت واحد",
     }),
 
-    columnHelper.accessor("totoalPrice", {
+    columnHelper.accessor("totalPrice", {
       cell: (info) => info.getValue(),
       header: "قیمت کل",
     }),
@@ -41,31 +43,31 @@ export const RequestDriverCard: React.FC<RequestDriverCardInterface> = ({
   return (
     <div
       className={`flex justify-center items-center flex-col w-full shadow-inner p-3 border
-     border-disable rounded-md gap-3 ${className}`}
+     border-disable rounded-md gap-3`}
     >
       <div className="flex justify-between items-center w-full">
         <p>{address}</p>
-        {isShowStatus && (
-          <Button
-            btnType="Icon"
-            className={{
-              className: "text-[10px] bg-secondary !text-black gap-2",
-              iconClassName: ` ${requestMode[RequestStatusEnum[status]].color}`,
-            }}
-            icon={requestMode[RequestStatusEnum[status]].icon}
-            title={RequestStatusEnum[status]}
-          />
-        )}
       </div>
       <div className="flex justify-start items-center w-full">
-        {`قیمت کل : ${price.toPersion()} تومان`}
+        {`قیمت کل : ${total_category_user.toPersion()} تومان`}
       </div>
       <div className="flex justify-start items-center w-full">
-        {`تاریخ و زمان : ${dateTime.toShamsi()}`}
+        {`تاریخ و زمان : ${new Date(
+          parseInt(accept_request_date_user)
+        ).toShamsi()}`}
       </div>
-      <Table<GarbageType> columns={columns} data={garbages} />
+      <Table<TimesheetRequestCategoryUserType>
+        columns={columns}
+        data={cateqory_user}
+      />
       <div className="flex justify-center items-center mt-2 gap-3">
-        <Button title="پذیرفتن" className={{ className: "px-10" }} />
+        <Button
+          title="پذیرفتن"
+          className={{ className: "px-10" }}
+          onClick={() => {
+            onClick(id);
+          }}
+        />
       </div>
     </div>
   );

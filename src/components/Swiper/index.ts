@@ -1,4 +1,4 @@
-import { RequestDriverInterface } from "../../interfaces/RequestDriverInterface";
+import { TimesheetRequestInterface } from "../../interfaces/Timesheet";
 
 export * from "./Slider";
 export * from "./RequestSwiper";
@@ -8,5 +8,5 @@ export interface SliderInterface {
 
 export interface RequestSwiperInterface {
   className?: string;
-  items: Array<RequestDriverInterface>;
+  items?: Array<TimesheetRequestInterface>;
 }

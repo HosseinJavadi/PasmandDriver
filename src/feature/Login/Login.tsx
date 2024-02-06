@@ -28,13 +28,15 @@ export const Login = () => {
     validations: {
       RoleForNationalCode: (value) => {
         if (!value) return "کد ملی نمیتواند خالی باشد";
-
-        if (value.length < 10) return "کد ملی نمیتواند کمتر از ده رقم باشد";
+        else if (value.length < 10)
+          return "کد ملی نمیتواند کمتر از ده رقم باشد";
 
         return true;
       },
       RoleForPassword: (value) => {
         if (!value) return "رمزعبور  نمیتواند خالی باشد";
+        else if (value.length < 8)
+          return "رمز عبور نمیتواند کمتر از 8 کارکتر باشد";
 
         return true;
       },
@@ -50,8 +52,8 @@ export const Login = () => {
         <h1 className="text-md">ورود راننده</h1>
         <Image src={DarkhastImage} className="mt-6" />
         <Form
-          onSubmit={(e) => {
-            LoginRequest.reFetch(e);
+          onSubmit={(userLoginData) => {
+            LoginRequest.reFetch(userLoginData);
           }}
           className="p-2 shadow-inner grid grid-cols-1 justify-items-center items-center gap-3 w-72"
         >

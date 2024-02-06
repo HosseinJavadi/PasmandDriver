@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { RequestInterface, UseFetchRequest, UseFetchResponse } from ".";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
@@ -21,7 +21,28 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
   const [enable, setEnable] = useState<boolean>(fetchInitial ?? false);
   const fetch = useQuery<TData>({
     queryKey: [body],
-    queryFn: () => creatorAxios<TData>({ ...body }).then((res) => res.data),
+    queryFn: () =>
+      creatorAxios<TData>({ ...body })
+        .then((res) => res.data)
+        .catch((error) => {
+          if (error) {
+            if (error instanceof AxiosError && error.response) {
+              if (errorHandler != undefined) {
+                {
+                  errorHandler(
+                    error.response?.data as unknown as ErrorResponseInterface
+                  );
+                }
+              } else {
+                (
+                  error.response?.data as unknown as ErrorResponseInterface
+                ).error.forEach((n) => {
+                  toast.error(n.message);
+                });
+              }
+            } else toast.error("خطا در ارسال درخواست");
+          }
+        }),
     gcTime: 0,
     staleTime: 0,
     retry: 0,
@@ -41,29 +62,6 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
         status: fetch.status,
         data: fetch.data,
       },
-      reFetch(payload, query) {
-        setBody({ ...body, body: payload, query: query });
-        setEnable(true);
-      },
-      requestDetail: body,
-      isLoading: fetch.isFetching,
-    };
-  } else if (fetch.error) {
-    if (fetch.error instanceof AxiosError && fetch.error.response) {
-      if (errorHandler)
-        errorHandler(
-          fetch.error.response?.data as unknown as ErrorResponseInterface
-        );
-      else {
-        (
-          fetch.error.response?.data as unknown as ErrorResponseInterface
-        ).error.forEach((n) => {
-          toast.error(n.message);
-        });
-      }
-    }
-
-    return {
       reFetch(payload, query) {
         setBody({ ...body, body: payload, query: query });
         setEnable(true);
@@ -110,6 +108,10 @@ const creatorAxios = <TData>({
         headers: header,
       }
     );
+  else if (method === "Put")
+    return axios.put(url, body, {
+      headers: header,
+    });
   else
     return axios.delete(url, {
       headers: header,
