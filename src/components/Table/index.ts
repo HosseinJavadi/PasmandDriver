@@ -5,4 +5,5 @@ export * from "./Table";
 export interface TableInterface<T> {
   columns: ColumnDef<T, any>[];
   data: T[];
+  className?: string;
 }

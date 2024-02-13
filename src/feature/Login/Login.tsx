@@ -65,6 +65,7 @@ export const Login = () => {
           <Form.TextBox
             classNameParent="w-full"
             name="password"
+            type="password"
             placeholder="رمز عبور"
             className=""
           ></Form.TextBox>

@@ -1,8 +1,4 @@
-import { IconsType } from "../../asset/icons/svg";
-import {
-  RequestInterface,
-  RequestStatusEnum,
-} from "../../interfaces/RequestInterface";
+import { ReactNode } from "react";
 
 export * from "./RequestCard";
 export * from "./RequestDriverCard";
@@ -14,3 +10,8 @@ export interface LearnPostCardInterface {
   title: string;
   text: string;
 }
+export type RequestDriverCardType = {
+  onClick: (id: string) => void;
+  buttonName: string;
+  footerElemet?: ReactNode;
+};

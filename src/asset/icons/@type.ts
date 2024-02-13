@@ -4,4 +4,5 @@ export interface IconInterface {
   className?: string;
   onClick?: () => void;
   iconType: IconsType;
+  title?: string;
 }

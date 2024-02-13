@@ -15,10 +15,27 @@ import { ReactComponent as Identification } from "./identification.svg";
 import { ReactComponent as Edit } from "./edit.svg";
 import { ReactComponent as Plus } from "./plusCircle.svg";
 import { ReactComponent as Delete } from "./delete.svg";
+import { ReactComponent as Moon } from "./moon.svg";
+import { ReactComponent as Sun } from "./sun.svg";
+import { ReactComponent as Cloud } from "./cloud.svg";
+import { ReactComponent as Moving } from "./moving.svg";
+import { ReactComponent as Wait } from "./wait.svg";
+import { ReactComponent as Pending } from "./pending.svg";
+import { ReactComponent as Done } from "./done.svg";
+import { ReactComponent as Cancel } from "./cancel.svg";
+import { ReactComponent as Accept } from "./accept.svg";
+import { ReactComponent as Minus } from "./minus.svg";
 
 const Icons = {
+  Minus,
+  Accept,
+  Pending,
+  Cancel,
+  Done,
+  Wait,
   Delete,
   Menu,
+  Moving,
   Back,
   Star,
   User,
@@ -34,6 +51,9 @@ const Icons = {
   Identification,
   Edit,
   Plus,
+  Moon,
+  Sun,
+  Cloud,
 };
 export type IconsType = keyof typeof Icons;
 

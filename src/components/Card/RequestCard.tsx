@@ -1,5 +1,4 @@
 import { IconsType } from "../../asset/icons/svg";
-import { RequestStatusEnum } from "../../interfaces/RequestInterface";
 import { TimesheetRequestInterface } from "../../interfaces/Timesheet";
 import { Button } from "../Button";
 

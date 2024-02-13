@@ -1,7 +1,6 @@
 import { Table } from "../../components/Table";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Button } from "../../components/Button";
-import { RequestStatusEnum } from "../../interfaces/RequestInterface";
 import { IconsType } from "../../asset/icons/svg";
 import { TimesheetRequestCategoryUserType } from "../../interfaces/Timesheet";
 

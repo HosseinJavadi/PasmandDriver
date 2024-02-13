@@ -1,6 +1,19 @@
+import { RequestApi } from "../../apis";
 import { RequestCard } from "../../components/Card";
+import { useAppSelector, useFetch } from "../../hooks";
 
 export const DoneRequests = () => {
+  const user = useAppSelector((state) => state.userReducer);
+  const requestDone = useFetch({
+    request: RequestApi.getTimeSheetsDone(
+      user.accessToken!,
+      user.refreshToken!
+    ),
+    fetchInitial: true,
+    onSuccess(data) {
+      debugger;
+    },
+  });
   return (
     <div className="p-2 py-3">
       <h3 className="text-center text-sm">درخواست های انجام شده</h3>

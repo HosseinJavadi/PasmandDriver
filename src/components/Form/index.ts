@@ -1,9 +1,9 @@
-import React from "react";
+import { ReactNode } from "react";
 
 export * from "./Form";
 
 export interface FormInterface<T> {
-  children?: Array<React.ReactElement> | React.ReactElement;
+  children?: ReactNode;
   onSubmit?: (e: T) => void;
   className?: string;
 }

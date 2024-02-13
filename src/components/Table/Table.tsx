@@ -6,7 +6,11 @@ import {
 } from "@tanstack/react-table";
 import { TableInterface } from ".";
 
-export function Table<TData>({ columns, data }: TableInterface<TData>) {
+export function Table<TData>({
+  columns,
+  data,
+  className: calseName = "",
+}: TableInterface<TData>) {
   const table = useReactTable({
     columns: columns,
     data: data,
@@ -14,7 +18,7 @@ export function Table<TData>({ columns, data }: TableInterface<TData>) {
   });
 
   return (
-    <table className="w-full">
+    <table className={`w-full ${calseName}`}>
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
@@ -42,7 +46,7 @@ export function Table<TData>({ columns, data }: TableInterface<TData>) {
           </tr>
         ))}
       </tbody>
-      <tfoot>
+      {/* <tfoot>
         {table.getFooterGroups().map((footerGroup) => (
           <tr key={footerGroup.id}>
             {footerGroup.headers.map((header) => (
@@ -57,7 +61,7 @@ export function Table<TData>({ columns, data }: TableInterface<TData>) {
             ))}
           </tr>
         ))}
-      </tfoot>
+      </tfoot> */}
     </table>
   );
 }

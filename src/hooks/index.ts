@@ -13,9 +13,11 @@ export type ValidationHandlersType = {
   event: (value: string) => boolean | string;
 };
 export interface CreatorFormInterface extends JSX.Element {}
-export interface TextBoxFormInterface<T> extends TextBoxInterface<T> {
+export interface TextBoxFormInterface<T>
+  extends Omit<TextBoxInterface<T>, "name"> {
   classNameParent?: string;
   classNameError?: string;
+  name: keyof T & string;
 }
 export type FormHandler<T> = {
   ({ children, className, onSubmit }: FormInterface<T>): CreatorFormInterface;

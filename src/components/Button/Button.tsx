@@ -34,7 +34,7 @@ export const Button: React.FC<ButtonInterface> = ({
       };
       break;
     case "Normal":
-      element = <>{title}</>;
+      element = <>{title || children}</>;
       className = {
         ...className,
         className:

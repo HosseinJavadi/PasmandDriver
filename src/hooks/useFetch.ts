@@ -4,8 +4,9 @@ import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { ErrorResponseInterface } from "../interfaces";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
+export const useFetch = <TData = {}, TBody = unknown, TQuery = unknown>({
   request,
   errorHandler,
   onSuccess,
@@ -15,6 +16,7 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
   TBody,
   TQuery
 > => {
+  var navigate = useNavigate();
   const [body, setBody] = useState<RequestInterface<TBody, TQuery>>({
     ...request,
   });
@@ -27,6 +29,12 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
         .catch((error) => {
           if (error) {
             if (error instanceof AxiosError && error.response) {
+              if (error.response.status === 401) {
+                setTimeout(() => {
+                  toast.info("شما خارج شدید لطفا احراز هویت کنید");
+                }, 400);
+                navigate("/login");
+              }
               if (errorHandler != undefined) {
                 {
                   errorHandler(
@@ -43,8 +51,8 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
             } else toast.error("خطا در ارسال درخواست");
           }
         }),
-    gcTime: 0,
-    staleTime: 0,
+    gcTime: Infinity,
+    staleTime: Infinity,
     retry: 0,
     enabled: enable,
   });
@@ -63,8 +71,12 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
         data: fetch.data,
       },
       reFetch(payload, query) {
-        setBody({ ...body, body: payload, query: query });
-        setEnable(true);
+        if (fetchInitial) {
+          fetch.refetch();
+        } else {
+          setBody({ ...body, body: payload, query: query });
+          setEnable(true);
+        }
       },
       requestDetail: body,
       isLoading: fetch.isFetching,
@@ -73,8 +85,12 @@ export const useFetch = <TData = {}, TBody = {}, TQuery = {}>({
 
   return {
     reFetch(payload, query) {
-      setBody({ ...body, body: payload, query: query });
-      setEnable(true);
+      if (fetchInitial) {
+        fetch.refetch();
+      } else {
+        setBody({ ...body, body: payload, query: query });
+        setEnable(true);
+      }
     },
     requestDetail: body,
     isLoading: fetch.isFetching,
@@ -95,20 +111,20 @@ const creatorAxios = <TData>({
         headers: { ...header, "Content-Type": "multipart/form-data" },
       });
     } else return axios.post<TData>(url, body, { headers: header });
-  else if (method == "Get")
+  else if (method == "Get") {
     return axios.get<TData>(
       `${url}${
         query
-          ? `?${Object.getOwnPropertyNames(query).map(
-              (n) => `${n}=${query[n as keyof typeof query]}`
-            )}`
+          ? `?${Object.getOwnPropertyNames(query)
+              .map((n) => `${n}=${query[n as keyof typeof query]}`)
+              .join("&")}`
           : ""
       }`,
       {
         headers: header,
       }
     );
-  else if (method === "Put")
+  } else if (method === "Put")
     return axios.put(url, body, {
       headers: header,
     });
