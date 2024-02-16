@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RequestConfirmImage } from "../../asset/images";
 import { Image } from "../../components/Image";
 import { useAppSelector, useFetch, useForm } from "../../hooks";
@@ -12,6 +12,7 @@ import {
 import { createColumnHelper } from "@tanstack/react-table";
 import {
   CategoryUserType,
+  RequestConfirmInputInterface,
   TimesheetRequestCategoryUserType,
 } from "../../interfaces/Timesheet";
 import { Table } from "../../components/Table";
@@ -23,6 +24,7 @@ import { TextBox } from "../../components/TextBox";
 export const RequestConfirm = () => {
   const params = useParams<{ id: string }>();
   const user = useAppSelector((state) => state.userReducer);
+  const navigate = useNavigate();
   const Form = useForm<{ tarkingCode: string }>({
     validations: {},
   });
@@ -37,6 +39,13 @@ export const RequestConfirm = () => {
   const [categoriesDriver, setCategoriesDriver] = useState<
     Array<SaveGategoriesDriver>
   >([]);
+  const saveRequestFinal = useFetch<any, RequestConfirmInputInterface>({
+    request: RequestApi.setRequestFinal(user.accessToken!, user.refreshToken!),
+    onSuccess(data) {
+      toast.success(data.message);
+      navigate("/");
+    },
+  });
   const categories = useFetch<BaseResponseInterface<Array<CategoryUserType>>>({
     request: RequestApi.getCategories(user.accessToken!, user.refreshToken!),
     onSuccess(data) {
@@ -76,7 +85,11 @@ export const RequestConfirm = () => {
   }, []);
   return (
     <>
-      <Loading isLoading={categories.isLoading || isLoading} />
+      <Loading
+        isLoading={
+          categories.isLoading || isLoading || saveRequestFinal.isLoading
+        }
+      />
       <div className="p-2">
         <div className="flex justify-center items-center flex-col">
           <Image src={RequestConfirmImage} className="h-80 w-80" />
@@ -125,7 +138,18 @@ export const RequestConfirm = () => {
           </div>
         </div>
         <hr className="w-full col-span-2 text-primaryLight border-dashed mt-4" />
-        <Form className="flex justify-center flex-col items-center gap-5 mt-5">
+        <Form
+          className="flex justify-center flex-col items-center gap-5 mt-5"
+          onSubmit={(param) => {
+            saveRequestFinal.reFetch({
+              category: categoriesDriver.map((n) => {
+                return { id: n.id, weight: n.weight };
+              }),
+              timeSheetRequest: params.id!,
+              trakingCode: param.tarkingCode,
+            });
+          }}
+        >
           <h1 className="text-sm text-primaryDark font-bold">
             فرم ثبت درخواست
           </h1>

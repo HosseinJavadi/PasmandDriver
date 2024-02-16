@@ -12,6 +12,6 @@ export interface LearnPostCardInterface {
 }
 export type RequestDriverCardType = {
   onClick: (id: string) => void;
-  buttonName: string;
+  buttonName?: string;
   footerElemet?: ReactNode;
 };

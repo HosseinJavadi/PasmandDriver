@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { TextBoxInterface } from ".";
 
 export const TextBox = <T extends string>({
@@ -10,6 +11,11 @@ export const TextBox = <T extends string>({
   max,
   min,
 }: TextBoxInterface<T>) => {
+  const [val, setVal] = useState<string>(value);
+
+  useEffect(() => {
+    setVal(value);
+  }, [value]);
   return (
     <>
       <input
@@ -18,10 +24,13 @@ export const TextBox = <T extends string>({
         min={min}
         max={max}
         autoComplete="off"
-        value={value}
+        value={val}
         placeholder={placeholder}
         className={` ${className} outline-none  ring-successLight ring-1 rounded-md py-1 w-full px-4 min-h-10 font-bold`}
-        onChange={(e) => onChange?.(e.target.value)}
+        onChange={(e) => {
+          setVal(e.target.value);
+          onChange?.(e.target.value);
+        }}
       />
     </>
   );

@@ -4,7 +4,10 @@ import {
   RegisterInterface,
   BaseResponseInterface,
 } from "../interfaces";
-import { TimesheetInterface } from "../interfaces/Timesheet";
+import {
+  RequestConfirmInputInterface,
+  TimesheetInterface,
+} from "../interfaces/Timesheet";
 
 class RequestApi {
   private baseUrl: string = "";
@@ -133,6 +136,16 @@ class RequestApi {
     return {
       method: "Get",
       url: this.creatorUrl("api/pasmand/user-driver/categories"),
+      header: this.creatorToken(accessToken, refreshToken),
+    };
+  }
+  setRequestFinal(
+    accessToken: string,
+    refreshToken: string
+  ): RequestInterface<RequestConfirmInputInterface, unknown> {
+    return {
+      method: "Post",
+      url: this.creatorUrl("api/pasmand/user-driver/final/request"),
       header: this.creatorToken(accessToken, refreshToken),
     };
   }

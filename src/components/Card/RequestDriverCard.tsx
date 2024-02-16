@@ -99,16 +99,20 @@ export const RequestDriverCard: React.FC<
         columns={columns}
         data={cateqory_user}
       />
-      <div className="flex justify-center items-center mt-2 gap-3">
-        <Button
-          title={buttonName}
-          className={{ className: "px-10 !bg-primaryDark " }}
-          onClick={() => {
-            onClick(id);
-          }}
-        />
-        {footerElemet ? footerElemet : ""}
-      </div>
+      {buttonName ? (
+        <div className="flex justify-center items-center mt-2 gap-3">
+          <Button
+            title={buttonName}
+            className={{ className: "px-10 !bg-primaryDark " }}
+            onClick={() => {
+              onClick(id);
+            }}
+          />
+          {footerElemet ? footerElemet : ""}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

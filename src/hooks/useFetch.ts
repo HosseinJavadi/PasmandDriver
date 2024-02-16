@@ -51,8 +51,8 @@ export const useFetch = <TData = {}, TBody = unknown, TQuery = unknown>({
             } else toast.error("خطا در ارسال درخواست");
           }
         }),
-    gcTime: Infinity,
-    staleTime: Infinity,
+    gcTime: 0,
+    staleTime: 0,
     retry: 0,
     enabled: enable,
   });

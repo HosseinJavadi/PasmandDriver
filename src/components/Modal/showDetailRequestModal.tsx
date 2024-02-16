@@ -76,52 +76,54 @@ const ShowRequestDetailModal: React.FC<SaveRequestModalInterface> = (props) => {
   });
 
   return (
-    <Modal {...props} className="w-full" title="اطلاعات درخواست">
+    <>
       <Loading isLoading={saveActiveRequest.isLoading} />
-      <MapContainer
-        className="map-container min-h-96 w-full"
-        center={[
-          parseFloat(props.timeSheetRequest?.lat!),
-          parseFloat(props.timeSheetRequest?.lang!),
-        ]}
-        zoom={13}
-        scrollWheelZoom={true}
-        zoomControl={false}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <LocationMarker
-          lang={parseFloat(props.timeSheetRequest?.lang!)}
-          lat={parseFloat(props.timeSheetRequest?.lat!)}
-        />
-      </MapContainer>
+      <Modal {...props} className="w-full" title="اطلاعات درخواست">
+        <MapContainer
+          className="map-container min-h-96 w-full"
+          center={[
+            parseFloat(props.timeSheetRequest?.lat!),
+            parseFloat(props.timeSheetRequest?.lang!),
+          ]}
+          zoom={13}
+          scrollWheelZoom={true}
+          zoomControl={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <LocationMarker
+            lang={parseFloat(props.timeSheetRequest?.lang!)}
+            lat={parseFloat(props.timeSheetRequest?.lat!)}
+          />
+        </MapContainer>
 
-      <p className="text-center text-sm font-bold mt-10">
-        آدرس : {props.timeSheetRequest?.address}
-      </p>
-      <Button
-        title="ثبت و مسیریابی"
-        className={{ className: "mx-auto mt-4 w-44" }}
-        onClick={() => {
-          if (
-            props.timeSheetRequest?.status ===
-            TimeSheetRequestsEnum.movingDriver
-          )
-            window.open(
-              `geo:${props.timeSheetRequest?.lat},${props.timeSheetRequest?.lang}`,
-              "_blank",
-              "location=yes"
-            );
-          else {
-            saveActiveRequest.reFetch({
-              timeSheetRequest: props.timeSheetRequest?.id!,
-            });
-          }
-        }}
-      />
-    </Modal>
+        <p className="text-center text-sm font-bold mt-10">
+          آدرس : {props.timeSheetRequest?.address}
+        </p>
+        <Button
+          title="ثبت و مسیریابی"
+          className={{ className: "mx-auto mt-4 w-44" }}
+          onClick={() => {
+            if (
+              props.timeSheetRequest?.status ===
+              TimeSheetRequestsEnum.movingDriver
+            )
+              window.open(
+                `geo:${props.timeSheetRequest?.lat},${props.timeSheetRequest?.lang}`,
+                "_blank",
+                "location=yes"
+              );
+            else {
+              saveActiveRequest.reFetch({
+                timeSheetRequest: props.timeSheetRequest?.id!,
+              });
+            }
+          }}
+        />
+      </Modal>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icon } from "../../asset/icons";
 import { Button } from "../../components/Button";
 import { Slider } from "../../components/Swiper";
@@ -35,9 +35,10 @@ export const Home = () => {
       user.accessToken!,
       user.refreshToken!
     ),
-    fetchInitial: true,
   });
-
+  useEffect(() => {
+    activeTimeSheetRequest.reFetch();
+  }, []);
   return (
     <>
       <Loading isLoading={activeTimeSheetRequest.isLoading} />
@@ -53,7 +54,7 @@ export const Home = () => {
           icon="Star"
           href=""
         /> */}
-        <div className="grid xs:grid-cols-2 gap-5 mt-10">
+        <div className="grid xs:grid-cols-9  mt-10 justify-items-center ">
           {/* <Button
           className={{
             className:
@@ -65,63 +66,73 @@ export const Home = () => {
           <Icon iconType="Help" className="text-warnDark h-7 w-7" />
           راهنما
         </Button> */}
-          <Button
-            className={{
-              className:
-                "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
-            }}
-            btnType="None"
-            href="Request"
-          >
-            <Icon iconType="Letter" className="text-primary h-7 w-7" />
-            شروع کار
-          </Button>
-          <Button
-            className={{
-              className:
-                "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
-            }}
-            btnType="None"
-            href="Request/DoneRequests"
-          >
-            <Icon iconType="Report" className="text-primaryLight h-7 w-7" />
-            گزارش درخواست ها
-          </Button>
+          <div className="flex flex-col gap-5 col-span-4">
+            <Button
+              className={{
+                className:
+                  "bg-secondary !text-black border !border-successDark !px-6 gap-2 !justify-start rounded-l-full",
+              }}
+              btnType="None"
+              href="Request"
+            >
+              <Icon iconType="Letter" className="text-primary h-7 w-7" />
+              شروع کار
+            </Button>
+            <Button
+              className={{
+                className:
+                  "bg-secondary !text-black border !border-successDark !px-6 gap-2 !justify-start rounded-l-full",
+              }}
+              btnType="None"
+              href="Request/DoneRequests"
+            >
+              <Icon iconType="Report" className="text-primaryLight h-7 w-7" />
+              گزارش ها
+            </Button>
 
-          <Button
-            className={{
-              className:
-                "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
-            }}
-            btnType="None"
-            href="User/Profile"
-          >
-            <Icon iconType="User" className="text-black h-7 w-7" />
-            کاربری
-          </Button>
-          <Button
-            className={{
-              className:
-                "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
-            }}
-            btnType="None"
-            href="Learn"
-          >
-            <Icon iconType="TV" className="text-successDark h-7 w-7" />
-            آموزش
-          </Button>
-          <Button
-            className={{
-              className:
-                "bg-secondary !text-black border !border-primaryDark gap-2 !justify-start",
-            }}
-            btnType="None"
-            href="FAQ"
-          >
-            <Icon iconType="Question" className="text-info h-7 w-7 " />
-            سوالات متداول
-          </Button>
+            <Button
+              className={{
+                className:
+                  "bg-secondary !text-black border !border-successDark !px-6 gap-2 !justify-start rounded-l-full",
+              }}
+              btnType="None"
+              href="User/Profile"
+            >
+              <Icon iconType="User" className="text-black h-7 w-7" />
+              کاربری
+            </Button>
+          </div>
+          <div className="h-full w-[1px] border border-dashed "></div>
+          <div className="flex flex-col gap-5 col-span-4">
+            <Button
+              className={{
+                className:
+                  "bg-secondary !text-black border !border-successDark !px-6 gap-2 !justify-start rounded-l-full",
+              }}
+              btnType="None"
+              href="Learn"
+            >
+              <Icon iconType="TV" className="text-successDark h-7 w-7" />
+              آموزش
+            </Button>
+            <Button
+              className={{
+                className:
+                  "bg-secondary !text-black border !border-successDark !px-6 gap-2 !justify-start rounded-l-full",
+              }}
+              btnType="None"
+              href="FAQ"
+            >
+              <Icon iconType="Question" className="text-info h-7 w-7 " />
+              سوالات
+            </Button>
+          </div>
         </div>
+        {activeTimeSheetRequest.data?.data?.data.length !== 0 ? (
+          <p className="text-center mt-10 text-sm">درخواست های فعال</p>
+        ) : (
+          ""
+        )}
         {activeTimeSheetRequest.data?.data?.data.map((n, i) => (
           <div key={i} className="w-full mt-4">
             <div

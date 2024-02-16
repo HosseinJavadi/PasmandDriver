@@ -56,7 +56,7 @@ export interface TimesheetInterface {
   toTime: string;
   request: Array<TimesheetRequestInterface>;
   shift: "morning" | "afternoon" | "night";
-  id: "65c0ba3513072269e0d26a38";
+  id: string;
 }
 export enum TimeSheetRequestsEnum {
   pendingUser = "pendingUser", ////در حال برسی درخواست,
@@ -88,4 +88,9 @@ export interface TimesheetRequestInterface {
   id: string;
   address: string;
   status: TimeSheetRequestsEnum;
+}
+export interface RequestConfirmInputInterface {
+  trakingCode: string;
+  timeSheetRequest: string;
+  category: Array<{ id: string; weight: number }>;
 }
